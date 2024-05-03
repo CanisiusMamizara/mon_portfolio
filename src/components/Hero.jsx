@@ -1,7 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import About from "../assets/images/portfolio.png";
+import "./Hero.css";
 
 const Hero = () => {
+  const [reveal, setReveal] = useState(false);
+
+  useEffect(() => {
+    // Déclencher l'effet d'écriture après un délai initial
+    const timeout = setTimeout(() => {
+      setReveal(true);
+    }, 1000); // Délai initial de 1 seconde avant de commencer l'effet d'écriture
+
+    // Nettoyer le timeout lors du démontage du composant
+    return () => clearTimeout(timeout);
+  }, []); // Exécuter cet effet uniquement lors du premier rendu
+
   const social_media = [
     { logo: "logo-instagram", link: "https://www.instagram.com/canisiusmh" },
     { logo: "logo-facebook", link: "https://www.facebook.com/canisius.mamizara" },
@@ -17,10 +30,20 @@ const Hero = () => {
       <div className="flex-1">
         <div className="md:text-left text-center">
           <h1 className="md:text-5xl text-2xl md:leading-normal leading-10 text-white font-bold">
-            <span className="text-cyan-600 md:text-6xl text-5xl">
-              Salut!
-              <br />
-            </span>
+            <div className="text-cyan-600 md:text-6xl text-5xl reveal-text">
+              {reveal && (
+                <>
+                  <span>S</span>
+                  <span>a</span>
+                  <span>l</span>
+                  <span>u</span>
+                  <span>t</span>
+                  <span>!</span>
+                  <div className="cursor"></div>
+                  <br />
+                </>
+              )}
+            </div>
             Je m'appelle <span>Mamizara H. Canisius</span>
           </h1>
           <h4 className="md:text-2xl text-lg md:leading-normal leading-5 mt-4 font-bold text-gray-600">

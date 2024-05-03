@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useRef } from 'react';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const contact_info = [
@@ -10,7 +11,27 @@ const Contact = () => {
     },
   ];
 
+  const form = useRef();
 
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm(
+      'service_dbxjgxr', 
+      'template_asc42bz', 
+      form.current, {
+        publicKey: 'o11vadrTPEM9x-78H',
+      })
+      .then(
+        () => {
+          console.log('SUCCESS!');
+        },
+        (error) => {
+          console.log('FAILED...', error.text);
+        },
+      );
+  };
   return (
     <section id="contact" className="py-10 px-3 text-white">
       <div className="text-center mt-8">
@@ -23,9 +44,9 @@ const Contact = () => {
           className="mt-16 flex md:flex-row flex-col
          gap-6 max-w-5xl bg-gray-800 md:p-6 p-2 rounded-lg mx-auto"
         >
-          <form className="flex flex-col flex-1 gap-5" >
-            <input type="text" placeholder="Votre Nom" name="nom" />
-            <input type="Email" placeholder="Votre Adresse Email" name="email" />
+          <form className="flex flex-col flex-1 gap-5" ref={form} onSubmit={sendEmail}>
+            <input type="text" placeholder="Votre Nom" name="from_name" />
+            <input type="Email" placeholder="Votre Adresse Email" name="message" />
             <textarea placeholder="Votre Message" name="message" rows={10}></textarea>
             <button className="btn-primary w-fit">Envoyer</button>
           </form>
