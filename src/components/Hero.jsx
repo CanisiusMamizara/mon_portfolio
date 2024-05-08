@@ -6,14 +6,14 @@ const Hero = () => {
   const [reveal, setReveal] = useState(false);
 
   useEffect(() => {
-    // Déclencher l'effet d'écriture après un délai initial
+    
     const timeout = setTimeout(() => {
       setReveal(true);
-    }, 1000); // Délai initial de 1 seconde avant de commencer l'effet d'écriture
+    }, 1000);
 
-    // Nettoyer le timeout lors du démontage du composant
+    
     return () => clearTimeout(timeout);
-  }, []); // Exécuter cet effet uniquement lors du premier rendu
+  }, []);
 
   const social_media = [
     { logo: "logo-instagram", link: "https://www.instagram.com/canisiusmh" },
