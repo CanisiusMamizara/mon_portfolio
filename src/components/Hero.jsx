@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import About from "../assets/images/portfolio.png";
+import About from "/assets/images/portfolio.png";
 import "./Hero.css";
 
 const Hero = () => {

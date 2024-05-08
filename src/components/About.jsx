@@ -1,5 +1,5 @@
 import React from "react";
-import Hero from "../assets/images/Hero.png";
+import Hero from "/assets/images/Hero.png";
 const About = () => {
   const info = [
     { text: "Mois d'experience", count: "04" },
@@ -34,7 +34,7 @@ const About = () => {
               </div>
               <br />
               <br />
-              <a href="./src/assets/Canisius_CV.pdf" download>
+              <a href="/CV_canisius.pdf" download>
                 <button className="btn-primary">Telecharger CV</button>
               </a>
             </div>
